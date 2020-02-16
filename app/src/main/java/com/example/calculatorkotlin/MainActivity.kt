@@ -1,8 +1,8 @@
 package com.example.calculatorkotlin
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
 
@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     private val nList = ArrayList<Double>()
     private val oList = ArrayList<Char>()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -108,7 +109,7 @@ class MainActivity : AppCompatActivity() {
 
             textViewToDisplay.text = "${textViewToDisplay.text}="
             addList(numStr)
-            var result = calculate().toString()
+            val result = calculate().toString()
             textViewToDisplay.text = result
             numStr = result
             nList.clear()
@@ -116,9 +117,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun addList(numStr: String) {
         try {
-            var num = numStr.toDouble()
+            val num = numStr.toDouble()
             nList.add(num)
         }catch (e: Exception){
             textViewToDisplay.text = "Numeric Error"
@@ -126,11 +128,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @Suppress("NAME_SHADOWING")
     private fun calculate(): Double {
         var i = 0
         while (i < oList.size){
             if (oList.get(i) == '*' || oList.get(i) == '/'){
-                var result =
+                val result =
                     if(oList.get(i) == '*'){
                         nList.get(i) * nList.get(i+1)
                     }else{
@@ -156,9 +159,10 @@ class MainActivity : AppCompatActivity() {
         return result
     } // end of calculate()
 
+    @SuppressLint("SetTextI18n")
     private fun addList(numStr: String, operator: Char) {
         try {
-            var num = numStr.toDouble()
+            val num = numStr.toDouble()
             nList.add(num)
             if (operator != '='){
                 oList.add(operator)
